@@ -1,0 +1,21 @@
+{
+  "name": "api-futebol-backend",
+  "version": "1.0.0",
+  "description": "API Futebol Backend com Node.js e Express",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "author": "Seu Nome",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "pg": "^8.16.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  }
+}
