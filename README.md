@@ -1,55 +1,59 @@
-# 📊 API Futebol SofaScore Clone
+# ⚽ API Futebol SofaScore Clone
 
-API RESTful para consultar informações de futebol em tempo real, com layout e estrutura inspirados no site SofaScore.
+Projeto Fullstack com **Node.js (Express)** no backend e **React + Tailwind CSS** no frontend, inspirado no SofaScore, com dados de:
 
-## ✅ Base URL (Ambiente de Produção):
+- ✅ Jogos ao Vivo
+- ✅ Partidas por competição
+- ✅ Classificação (Standings)
+- ✅ Top jogadores e competições
+- ✅ Layout moderno e responsivo
 
-https://SEU-BACKEND-NO-RENDER/api
+---
 
-Durante o desenvolvimento local:
+## 🖼 Preview
 
-http://localhost:3001
+![Preview](./capa.png) <!-- Substitua com uma imagem se quiser -->
 
-## ✅ Endpoints Disponíveis
+---
 
-### 📍 GET /livescores
-**Descrição:** Retorna todos os jogos ao vivo no momento, incluindo nomes dos times, escudos, placar e status da partida.
-**Cache:** 30 segundos.
+## 🚀 Funcionalidades
 
-### 📍 GET /fixtures
-**Descrição:** Lista os próximos 50 jogos programados da Premier League (temporada 2023).
-**Cache:** 60 segundos.
+- [x] API RESTful em Node.js
+- [x] Integração com API-Football (dados reais)
+- [x] Layout com TailwindCSS e React Router
+- [x] Consulta por competição, com jogos do dia e ao vivo
+- [x] Sistema de cache para otimizar requisições
 
-### 📍 GET /standings
-**Descrição:** Retorna a tabela de classificação da Premier League, temporada 2023.
-**Cache:** 5 minutos.
+---
 
-### 📍 GET /fixture/:id
-**Descrição:** Retorna os detalhes completos de uma partida específica pelo Fixture ID.
-**Parâmetros de URL:** :id → ID numérico da partida.
-**Cache:** 10 minutos (individual por Fixture ID).
+## 📦 Instalação
 
-## ✅ Controle de Cache (TTL por rota):
+### Backend
 
-| Endpoint | Cache TTL |
-|---|---|
-| /livescores | 30 segundos |
-| /fixtures | 60 segundos |
-| /standings | 5 minutos |
-| /fixture/:id | 10 minutos |
+```bash
+cd backend
+npm install
+node server.js
+```
 
-## ✅ Autenticação:
+### Frontend
 
-❌ Atualmente sem autenticação para consumo externo.  
-✅ Apenas o backend interno utiliza sua API Key privada da API-Football.
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-## ✅ Observação Final:
+---
 
-> Atenção: Este projeto utiliza dados da [API-Football](https://www.api-football.com/) e está sujeito às limitações do seu plano (Free/Paid).
+## 🌐 Deploy
 
-## ✅ Contato do Desenvolvedor:
+- RapidAPI (em breve): [https://rapidapi.com/SEU_USUARIO](https://rapidapi.com)
+- Frontend: [https://SEU_DOMINIO.render.com](https://SEU_DOMINIO.render.com)
 
-Se precisar de suporte ou quiser contratar melhorias:
+---
 
-- 📧 Email: SEUEMAIL@example.com
-- 🌐 GitHub: https://github.com/SEU-USUARIO
+## 📫 Contato
+
+Desenvolvido por [Lúcio Costa](https://github.com/luciohc)  
+✉️ lucio@exemplo.com
