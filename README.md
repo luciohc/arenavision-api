@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ⚽ API Futebol – SofaScore Clone
 
 Uma API profissional que retorna **jogos ao vivo**, **próximos jogos**, **tabela de classificação**, **detalhes das partidas** e muito mais – integrada à [API-Football](https://www.api-football.com/), com cache, autenticação por API Key e documentação Swagger.
@@ -105,3 +106,7 @@ axios.get("http://localhost:3001/api/fixtures?league=39&season=2023", {
 ---
 
 Desenvolvido por [Seu Nome](https://github.com/seu-usuario)
+=======
+# arenavision-api
+API RESTful de Futebol com dados ao vivo, estatísticas, classificação e escalações.
+>>>>>>> fc92a8f9d8935c9b77cc2d8ae184f5c238d0af22
