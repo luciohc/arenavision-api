@@ -47,6 +47,11 @@ app.use('/api/fixture', eventsRouter);
 app.use('/api/events', eventsRouter);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+app.get('/', (req, res) => {
+  res.send('🎉 Arena Vision API está online! Acesse /api-docs para ver os endpoints.');
+});
+
+
 // Rota direta ao banco (jogos ao vivo)
 app.get('/api/livescores', async (req, res) => {
   try {
