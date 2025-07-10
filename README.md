@@ -1,83 +1,131 @@
 # ⚽ Arena Vision API de Futebol
 
-API RESTful completa para consulta de informações sobre futebol em tempo real: **placares ao vivo, próximos jogos, classificações, estatísticas, escalações, eventos e odds de apostas**.
+API RESTful para consulta de partidas ao vivo, estatísticas, classificações, escalações e odds de futebol.
 
-> Ideal para desenvolvedores que buscam dados atualizados de futebol para apps, bots, dashboards ou plataformas esportivas.
+## 🔗 Link da API (Produção)
 
----
+> https://arenavision-api.onrender.com
 
-## 🌍 Link da API Online
+## 🧪 Documentação Interativa (Swagger UI)
 
-- 🔗 Documentação Swagger: [https://arenavision-api.onrender.com/api-docs](https://arenavision-api.onrender.com/api-docs)
-- 🔗 Exemplo de uso: [https://arenavision-api.onrender.com/api/livescores](https://arenavision-api.onrender.com/api/livescores)
+> https://arenavision-api.onrender.com/api-docs
 
----
-
-## 📚 Endpoints Disponíveis
-
-| Método | Rota | Descrição |
-|--------|------|-----------|
-| GET | `/api/livescores` | Lista de partidas ao vivo |
-| GET | `/api/fixtures` | Lista de próximos jogos |
-| GET | `/api/standings` | Classificação atual |
-| GET | `/api/fixture/{id}` | Detalhes de uma partida |
-| GET | `/api/fixture/{id}/stats` | Estatísticas da partida |
-| GET | `/api/fixture/{id}/lineups` | Escalações |
-| GET | `/api/fixture/{id}/events` | Eventos do jogo |
-| GET | `/api/fixture/{id}/odds` | Odds de apostas |
-| GET | `/api/teams` | Lista de times |
+Acesse e teste todos os endpoints diretamente no navegador com autenticação por chave de API.
 
 ---
 
-## 🔐 Autenticação por API Key
+## 🚀 Endpoints Disponíveis
 
-Todas as rotas são protegidas com chave de API. Use o header:
+### 🔴 Jogos Ao Vivo
 
-```bash
-x-api-key: SUA_CHAVE
+`GET /api/livescores`
+
+Retorna todos os jogos que estão acontecendo agora.
+
+```json
+[
+  {
+    "id": 123456,
+    "league": "Premier League",
+    "teams": {
+      "home": "Arsenal",
+      "away": "Chelsea"
+    },
+    "status": "2nd Half",
+    "minute": 65,
+    "score": {
+      "home": 2,
+      "away": 1
+    }
+  }
+]
 ```
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+### 📅 Próximos Jogos
 
-- Node.js + Express
-- PostgreSQL
-- Swagger UI
-- Render (Deploy)
-- GitHub (CI/CD)
+`GET /api/fixtures`
 
 ---
 
-## 🚀 Como usar localmente
+### 📊 Classificação Atual
 
-```bash
-git clone https://github.com/luciohc/arenavision-api.git
-cd backend
-npm install
-npm start
+`GET /api/standings`
+
+---
+
+### 🧾 Detalhes de uma Partida
+
+`GET /api/fixture/{id}`
+
+---
+
+### 📈 Estatísticas do Jogo
+
+`GET /api/fixture/{id}/stats`
+
+---
+
+### 📋 Escalações
+
+`GET /api/fixture/{id}/lineups`
+
+---
+
+### 🎯 Eventos do Jogo
+
+`GET /api/fixture/{id}/events`
+
+---
+
+### 💸 Odds por Casa de Apostas
+
+`GET /api/fixture/{id}/odds`
+
+---
+
+### 🧠 Times Cadastrados
+
+`GET /api/teams`
+
+---
+
+## 🔐 Autenticação
+
+Todos os endpoints exigem uma chave de API personalizada.
+
+### Headers obrigatórios:
+
+```
+x-api-key: SUA_CHAVE_AQUI
 ```
 
 ---
 
-## 📦 Variáveis de Ambiente (.env)
+## 📁 Arquivo `.env` (exemplo)
+
+Você pode configurar sua própria instância com o arquivo `.env` baseado neste:
 
 ```env
 PORT=3001
-DATABASE_URL=postgresql://usuario:senha@localhost:5432/api_futebol
-API_KEY=sua_chave_segura
+DATABASE_URL=postgresql://user:password@localhost:5432/api_futebol
+API_KEY=suachavepersonalizada
 ```
 
 ---
 
-## 📄 Licença
+## 📌 Tecnologias Usadas
 
-MIT — uso livre com atribuição.
+- Node.js + Express
+- PostgreSQL
+- Swagger (OpenAPI 3.0)
+- Axios
+- dotenv
+- Render.com (Deploy)
 
 ---
 
 ## 👨‍💻 Autor
 
-**Lúcio Costa**  
-Desenvolvedor Full Stack & Educador em Tecnologia  
-GitHub: [@luciohc](https://github.com/luciohc)
+Desenvolvido por [Lúcio Costa](https://github.com/luciohc)
