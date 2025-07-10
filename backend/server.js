@@ -3,7 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
 const auth = require('./middleware/apiKey'); // Middleware para verificar chave do frontend
-const setupSwagger = require('./swagger-docs');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument  = require('./docs/swagger-docs');
 const statsRouter = require('./routes/stats');
 const statusRouter = require('./routes/status');
 const oddsRouter = require('./routes/odds');
@@ -24,13 +25,11 @@ app.use(express.json());
 // Rota pública de status (sem proteção)
 app.use('/api/status', statusRouter);
 app.use('/api/fixture', lineupsRouter); // 🔐 Protegido com chave se necessário
-// Swagger (pode ficar antes do middleware)
-setupSwagger(app);
 
 // 🌐 Conexão com PostgreSQL
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL || 'postgresql://postgres:Al171178@@localhost:5432/api_futebol',
-  ssl: { rejectUnauthorized: false },
+  ssl: false
 });
 
 // 🔐 Aplica middleware para rotas que precisam de autenticação
@@ -46,7 +45,7 @@ app.use('/api/fixture', statsRouter);
 app.use('/api/players', playersRouter);
 app.use('/api/fixture', eventsRouter);
 app.use('/api/events', eventsRouter);
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Rota direta ao banco (jogos ao vivo)
 app.get('/api/livescores', async (req, res) => {

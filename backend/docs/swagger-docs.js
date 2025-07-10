@@ -1,84 +1,226 @@
-/**
- * @swagger
- * /fixtures:
- *   get:
- *     summary: Lista de jogos com filtros opcionais (direto da API-Football)
- *     parameters:
- *       - in: query
- *         name: league
- *         schema:
- *           type: string
- *         description: ID da liga (ex: 39)
- *       - in: query
- *         name: season
- *         schema:
- *           type: string
- *         description: Temporada (ex: 2023)
- *       - in: query
- *         name: date
- *         schema:
- *           type: string
- *         description: Data no formato YYYY-MM-DD
- *       - in: query
- *         name: status
- *         schema:
- *           type: string
- *         description: Status da partida (live, scheduled, etc)
- *       - in: query
- *         name: next
- *         schema:
- *           type: integer
- *         description: Número de próximos jogos
- *     responses:
- *       200:
- *         description: Lista de partidas filtradas
- *       500:
- *         description: Erro ao buscar dados
- */
+const swaggerDocument = {
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Arena Vision API de Futebol",
+    "description": "API RESTful para consulta de partidas ao vivo, estat\u00edsticas, classifica\u00e7\u00f5es, escala\u00e7\u00f5es e odds de futebol.",
+    "version": "1.0.0"
+  },
+  servers: [
+    {
+      url: "http://localhost:3001",
+      description: "Servidor Local"
+    }
+  ]
+  ,
+  "paths": {
+    "/api/livescores": {
+      "get": {
+        "summary": "Listar partidas ao vivo",
+        "description": "Retorna uma lista de jogos que est\u00e3o acontecendo no momento.",
+        "responses": {
+          "200": {
+            "description": "Lista de partidas ao vivo retornada com sucesso"
+          }
+        },
+        "parameters": [],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/api/fixtures": {
+      "get": {
+        "summary": "Listar pr\u00f3ximos jogos",
+        "description": "Retorna uma lista de partidas futuras, com op\u00e7\u00e3o de filtros.",
+        "responses": {
+          "200": {
+            "description": "Lista de pr\u00f3ximos jogos retornada com sucesso"
+          }
+        },
+        "parameters": [],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/api/standings": {
+      "get": {
+        "summary": "Classifica\u00e7\u00e3o atual",
+        "description": "Retorna a tabela de classifica\u00e7\u00e3o das ligas dispon\u00edveis.",
+        "responses": {
+          "200": {
+            "description": "Tabela retornada com sucesso"
+          }
+        },
+        "parameters": [],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/api/fixture/{id}": {
+      "get": {
+        "summary": "Detalhes de uma partida",
+        "description": "Retorna detalhes da partida com ID espec\u00edfico.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detalhes da partida retornados com sucesso"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/api/fixture/{id}/stats": {
+      "get": {
+        "summary": "Estat\u00edsticas do jogo",
+        "description": "Retorna estat\u00edsticas detalhadas da partida.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Estat\u00edsticas retornadas com sucesso"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/api/fixture/{id}/lineups": {
+      "get": {
+        "summary": "Escala\u00e7\u00f5es",
+        "description": "Retorna escala\u00e7\u00f5es dos times da partida.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Escala\u00e7\u00f5es retornadas com sucesso"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/api/fixture/{id}/events": {
+      "get": {
+        "summary": "Eventos do jogo",
+        "description": "Retorna todos os eventos da partida como gols, cart\u00f5es, substitui\u00e7\u00f5es.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Eventos retornados com sucesso"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/api/fixture/{id}/odds": {
+      "get": {
+        "summary": "Odds de apostas",
+        "description": "Retorna as odds das casas de aposta para a partida.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Odds retornadas com sucesso"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/api/teams": {
+      "get": {
+        "summary": "Listar times",
+        "description": "Retorna todos os times dispon\u00edveis.",
+        "responses": {
+          "200": {
+            "description": "Lista de times retornada com sucesso"
+          }
+        },
+        "parameters": [],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      }
+    }
+  }
+};
 
-/**
- * @swagger
- * /standings:
- *   get:
- *     summary: Retorna a classificação (tabela) da liga
- *     responses:
- *       200:
- *         description: Tabela de classificação
- */
-
-/**
- * @swagger
- * /livescores:
- *   get:
- *     summary: Retorna os jogos ao vivo salvos no banco de dados local
- *     responses:
- *       200:
- *         description: Lista de partidas em tempo real
- */
-
-/**
- * @swagger
- * /fixtures/today:
- *   get:
- *     summary: Retorna jogos do dia atual
- *     responses:
- *       200:
- *         description: Lista de jogos do dia
- */
-
-/**
- * @swagger
- * /competition/{name}/matches:
- *   get:
- *     summary: Retorna jogos ao vivo e agendados por nome da competição
- *     parameters:
- *       - in: path
- *         name: name
- *         required: true
- *         schema:
- *           type: string
- *         description: Nome da competição (ex: FIFA Club World Cup)
- *     responses:
- *       200:
- *         description: Lista de partidas ao vivo e do dia por competição
- */
+module.exports = swaggerDocument;
