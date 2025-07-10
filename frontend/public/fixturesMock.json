@@ -1,0 +1,48 @@
+{
+  "Arsenal": [
+    {
+      "fixture": {
+        "id": 101,
+        "date": "2025-07-10T16:00:00Z"
+      },
+      "teams": {
+        "home": { "name": "Arsenal" },
+        "away": { "name": "Chelsea" }
+      }
+    },
+    {
+      "fixture": {
+        "id": 102,
+        "date": "2025-07-15T19:00:00Z"
+      },
+      "teams": {
+        "home": { "name": "Manchester City" },
+        "away": { "name": "Arsenal" }
+      }
+    }
+  ],
+  "Barcelona": [
+    {
+      "fixture": {
+        "id": 201,
+        "date": "2025-07-12T18:00:00Z"
+      },
+      "teams": {
+        "home": { "name": "Barcelona" },
+        "away": { "name": "Real Madrid" }
+      }
+    }
+  ],
+  "Flamengo": [
+    {
+      "fixture": {
+        "id": 301,
+        "date": "2025-07-14T20:30:00Z"
+      },
+      "teams": {
+        "home": { "name": "Flamengo" },
+        "away": { "name": "Palmeiras" }
+      }
+    }
+  ]
+}

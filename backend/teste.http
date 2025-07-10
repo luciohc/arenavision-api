@@ -1,0 +1,82 @@
+### 🎯 Testar FIXTURES
+GET http://localhost:3001/api/fixtures?league=39&season=2023
+x-api-key: hz8gmykar46b1976h9chfvnov2ib1cha
+
+###
+
+### 🏆 Testar STANDINGS
+GET http://localhost:3001/api/standings
+x-api-key: hz8gmykar46b1976h9chfvnov2ib1cha
+
+###
+
+### 🎲 Testar ODDS (exemplo com fixture ID 198772)
+GET http://localhost:3001/api/odds?fixture=10035039
+x-api-key: hz8gmykar46b1976h9chfvnov2ib1cha
+
+
+### 📊 Classificação da Premier League 2023
+GET https://v3.football.api-sports.io/standings?league=39&season=2023
+x-apisports-key: 928a8cbda9519aa32853c19e5f297981
+
+###
+
+### ⚽ Partidas ao Vivo (Live Scores)
+GET https://v3.football.api-sports.io/fixtures?live=all
+x-apisports-key: 928a8cbda9519aa32853c19e5f297981
+
+###
+
+### 🏟️ Próximos Jogos (Next Fixtures)
+GET https://v3.football.api-sports.io/fixtures?league=39&season=2023
+x-apisports-key: 928a8cbda9519aa32853c19e5f297981
+
+###
+
+### 🎲 Odds de um Jogo Específico (fixtureId: 10035039)
+GET https://v3.football.api-sports.io/odds?fixture=10035039
+x-apisports-key: 928a8cbda9519aa32853c19e5f297981
+
+###
+
+### 🔎 Buscar Competições por Nome (Premier League)
+GET https://v3.football.api-sports.io/leagues?search=Premier
+x-apisports-key: 928a8cbda9519aa32853c19e5f297981
+
+###
+
+### 🔎 Retorna estatísticaas por jogo como posse de bola, chutes,  escanteios etc.
+GET http://localhost:3001/api/fixture/198772/stats
+Headers:
+x-api-key: hz8gmykar46b1976h9chfvnov2ib1cha
+
+
+###
+
+### 🔎 Retornar as escalações dos times (lineups) com nomes e posições dos jogadores.
+GET http://localhost:3001/api/fixture/198772/lineups
+Headers:
+x-api-key: hz8gmykar46b1976h9chfvnov2ib1cha
+
+###
+
+### 🔎 Retorna Ranking de artilheiros e assistências por liga
+GET http://localhost:3001/api/players/topscorers?league=39&season=2023
+Headers:
+x-api-key: hz8gmykar46b1976h9chfvnov2ib1cha
+
+### Top Assistentes - Premier League 2023
+GET http://localhost:3001/api/players/topassists?league=39&season=2023
+x-api-key: hz8gmykar46b1976h9chfvnov2ib1cha
+
+### Retorna eventos em Tempo Real
+GET http://localhost:3001/api/fixture/198772/events
+x-api-key: hz8gmykar46b1976h9chfvnov2ib1cha
+
+### Retorna Todos eventos em Tempo Real
+GET http://localhost:3001/api/events
+x-api-key: hz8gmykar46b1976h9chfvnov2ib1cha
+
+### Buscar jogos do time Arsenal
+GET http://localhost:3001/api/fixtures/by-team?team=Barcelona
+x-api-key: hz8gmykar46b1976h9chfvnov2ib1cha

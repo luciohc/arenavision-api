@@ -7,7 +7,12 @@ function LiveScores() {
   useEffect(() => {
     const fetchLiveScores = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/external/livescores');
+        const response = await axios.get('http://localhost:3001/api/external/livescores', {
+          headers: {
+            'x-api-key': process.env.REACT_APP_API_KEY
+          }
+        });
+
         setScores(response.data.response || []);
       } catch (error) {
         console.error('Erro ao buscar Live Scores:', error);

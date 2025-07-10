@@ -11,8 +11,15 @@ function CompetitionMatches() {
     const fetchMatches = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/api/competition/${encodeURIComponent(name)}/matches`
+          `http://localhost:3001/api/competition/${encodeURIComponent(name)}/matches`,
+          {
+            headers: {
+              'x-api-key': process.env.REACT_APP_API_KEY
+            }
+          }
         );
+
+
         setMatches({
           live: response.data.live || [],
           today: response.data.today || [],

@@ -8,7 +8,15 @@ import UpcomingFixtures from './pages/UpcomingFixtures';
 import Standings from './pages/Standings';
 import FixtureDetails from './pages/FixtureDetails';
 import CompetitionMatches from './pages/CompetitionMatches';
-
+import FixturesPage from './pages/FixturesPage'; // ou o caminho correto
+import Home from './pages/Home';
+import Odds from './pages/Odds'; // importe no topo
+import FixtureStatsPage from './pages/FixtureStatsPage';
+import LineupsPage from './pages/LineupsPage';
+import Players from './pages/Players';
+import FixtureEventsPage from './pages/FixtureEventsPage';
+import EventsPage from './pages/EventsPage';
+import TeamFixtures from './pages/TeamFixtures';
 
 function App() {
   return (
@@ -36,10 +44,20 @@ function App() {
               </>
             }
           />
-          <Route path="/fixtures" element={<UpcomingFixtures />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/fixtures" element={<FixturesPage />} />
+          <Route path="/fixtures/upcoming" element={<UpcomingFixtures />} />
           <Route path="/standings" element={<Standings />} />
           <Route path="/fixture/:id" element={<FixtureDetails />} />
           <Route path="/competition/:name" element={<CompetitionMatches />} />
+          <Route path="/odds" element={<Odds />} />
+          <Route path="/stats" element={<FixtureStatsPage />} />
+          <Route path="/fixture/:id/lineups" element={<LineupsPage />} />
+          <Route path="/players" element={<Players />} />
+          <Route path="/fixture/:id/stats" element={<FixtureDetails />} />
+          <Route path="/fixture/:id/events" element={<FixtureEventsPage />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/team-fixtures" element={<TeamFixtures />} />
 
         </Routes>
       </Router>
@@ -47,4 +65,5 @@ function App() {
   );
 }
 
-export default App;
+export default App
+

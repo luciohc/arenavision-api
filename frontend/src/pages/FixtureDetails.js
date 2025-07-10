@@ -1,33 +1,51 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import FixtureWithOdds from '../components/FixtureWithOdds';
+import FixtureEvents from '../components/FixtureEvents';
 
 function FixtureDetails() {
   const { id } = useParams();
   const [fixture, setFixture] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchFixture = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/fixture/${id}`);
+        const response = await axios.get(`http://localhost:3001/api/fixtures/${id}`, {
+          headers: {
+            'x-api-key': process.env.REACT_APP_API_KEY
+          }
+        });
+
         setFixture(response.data.response[0]);
       } catch (error) {
         console.error('Erro ao buscar Fixture Details:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchFixture();
   }, [id]);
 
-  if (!fixture) {
-    return <p className="p-4 text-white">Carregando detalhes da partida...</p>;
+  if (loading || !fixture) {
+    return <p className="p-4 text-white">⏳ Carregando detalhes da partida...</p>;
   }
 
-  const { teams, goals, fixture: fixtureInfo } = fixture;
+  const { teams, goals, league, fixture: fixtureInfo } = fixture;
 
   return (
     <div className="max-w-4xl mx-auto p-4 text-white">
       <h1 className="text-2xl font-bold mb-6">📋 Detalhes da Partida</h1>
+
+      {/* Informações Gerais */}
+      <div className="bg-gray-900 p-4 rounded-lg shadow-md mb-4">
+        <h2 className="text-lg font-semibold mb-1">{league.name} - {league.round}</h2>
+        <p className="text-sm text-gray-400">
+          {new Date(fixtureInfo.date).toLocaleString('pt-BR')} | Status: {fixtureInfo.status.long}
+        </p>
+      </div>
 
       {/* Placar */}
       <div className="bg-gray-800 rounded p-4 shadow mb-6 flex items-center justify-between">
@@ -49,12 +67,18 @@ function FixtureDetails() {
         </div>
       </div>
 
-      {/* Status */}
-      <p className="text-sm text-gray-400 mb-4">Status: {fixtureInfo.status.long}</p>
+      {/* Odds */}
+      <FixtureWithOdds fixtureId={fixture.fixture.id} />
 
-      {/* Estatísticas (se existirem) */}
+      {/* Eventos */}
+      <div className="bg-gray-800 rounded p-4 shadow mt-6">
+        <h2 className="text-xl font-semibold mb-4">⚡ Eventos da Partida</h2>
+        <FixtureEvents fixtureId={id} />
+      </div>
+
+      {/* Estatísticas */}
       {fixture.statistics && fixture.statistics.length > 0 && (
-        <div className="bg-gray-800 rounded p-4 shadow">
+        <div className="bg-gray-800 rounded p-4 shadow mt-6">
           <h2 className="text-xl font-semibold mb-4">📊 Estatísticas</h2>
           <ul className="space-y-2">
             {fixture.statistics.map((stat, index) => (

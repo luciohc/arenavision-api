@@ -1,59 +1,107 @@
-# ⚽ API Futebol SofaScore Clone
+# ⚽ API Futebol – SofaScore Clone
 
-Projeto Fullstack com **Node.js (Express)** no backend e **React + Tailwind CSS** no frontend, inspirado no SofaScore, com dados de:
-
-- ✅ Jogos ao Vivo
-- ✅ Partidas por competição
-- ✅ Classificação (Standings)
-- ✅ Top jogadores e competições
-- ✅ Layout moderno e responsivo
+Uma API profissional que retorna **jogos ao vivo**, **próximos jogos**, **tabela de classificação**, **detalhes das partidas** e muito mais – integrada à [API-Football](https://www.api-football.com/), com cache, autenticação por API Key e documentação Swagger.
 
 ---
 
-## 🖼 Preview
-
-![Preview](./capa.png) <!-- Substitua com uma imagem se quiser -->
-
----
-
-## 🚀 Funcionalidades
-
-- [x] API RESTful em Node.js
-- [x] Integração com API-Football (dados reais)
-- [x] Layout com TailwindCSS e React Router
-- [x] Consulta por competição, com jogos do dia e ao vivo
-- [x] Sistema de cache para otimizar requisições
-
----
-
-## 📦 Instalação
-
-### Backend
+## 🚀 Como executar localmente
 
 ```bash
-cd backend
+git clone https://github.com/seu-usuario/api-futebol.git
+cd api-futebol/backend
 npm install
-node server.js
-```
-
-### Frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
+cp .env.example .env
+# edite sua API KEY no arquivo .env
+npm start
 ```
 
 ---
 
-## 🌐 Deploy
+## 📚 Documentação Swagger
 
-- RapidAPI (em breve): [https://rapidapi.com/SEU_USUARIO](https://rapidapi.com)
-- Frontend: [https://SEU_DOMINIO.render.com](https://SEU_DOMINIO.render.com)
+- Acesse em: [http://localhost:3001/api-docs](http://localhost:3001/api-docs)
 
 ---
 
-## 📫 Contato
+## 🔑 Autenticação
 
-Desenvolvido por [Lúcio Costa](https://github.com/luciohc)  
-✉️ lucio@exemplo.com
+Todas as rotas protegidas exigem o header:
+
+```
+x-api-key: SUA_CHAVE_AQUI
+```
+
+Defina sua chave no arquivo `.env`:
+
+```env
+API_KEY=minha-chave-secreta
+```
+
+---
+
+## 📦 Endpoints disponíveis
+
+- `/api/livescores` – Jogos ao vivo
+- `/api/fixtures` – Próximos jogos (com filtros: `league`, `season`, `date`, `status`, `next`)
+- `/api/standings` – Classificação
+- `/api/fixture/:id` – Detalhes da partida
+- `/api/competition/:name/matches` – Jogos por competição
+- `/api/status` – Health check da API
+
+---
+
+## 🧪 Exemplos de uso
+
+### 🔹 `curl`
+
+```bash
+curl -X GET "http://localhost:3001/api/fixtures?league=39&season=2023" \
+  -H "x-api-key: SUA_CHAVE"
+```
+
+---
+
+### 🔹 `fetch` (JavaScript)
+
+```js
+fetch("http://localhost:3001/api/fixtures?league=39&season=2023", {
+  headers: {
+    "x-api-key": "SUA_CHAVE"
+  }
+})
+  .then(res => res.json())
+  .then(data => console.log(data));
+```
+
+---
+
+### 🔹 `axios` (Node.js)
+
+```js
+const axios = require('axios');
+
+axios.get("http://localhost:3001/api/fixtures?league=39&season=2023", {
+  headers: {
+    "x-api-key": "SUA_CHAVE"
+  }
+})
+.then(res => {
+  console.log(res.data);
+})
+.catch(err => {
+  console.error(err);
+});
+```
+
+---
+
+## ✅ Status
+
+- Autenticação por chave de API
+- Documentação Swagger
+- Filtros dinâmicos com cache inteligente
+- API pronta para deploy e publicação no RapidAPI
+
+---
+
+Desenvolvido por [Seu Nome](https://github.com/seu-usuario)
