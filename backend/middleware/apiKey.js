@@ -1,16 +1,17 @@
 require('dotenv').config();
 
-// Middleware para verificar chave da API
-app.use((req, res, next) => {
+// backend/middleware/apiKey.js
+module.exports = (req, res, next) => {
   const apiKey = req.headers['x-rapidapi-key'];
-  const validKey = process.env.API_KEY; // ou direto 'sua-chave'
+  const validKey = process.env.API_KEY; // ou insira diretamente sua chave como string
 
-  if (!apiKey || apKey !== validKey) {
+  if (!apiKey || apiKey !== validKey) {
     return res.status(401).json({ error: 'Chave de API inválida ou ausente.' });
   }
-s
+
   next();
-});
+};
+
 
 
 /*module.exports = function (req, res, next) {
