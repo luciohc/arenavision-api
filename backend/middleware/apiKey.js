@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 // backend/middleware/apiKey.js
-module.exports = (req, res, next) => {
+/*module.exports = (req, res, next) => {
   const apiKey = req.headers['x-rapidapi-key'];
   const validKey = process.env.API_KEY; // ou insira diretamente sua chave como string
 
@@ -10,11 +10,11 @@ module.exports = (req, res, next) => {
   }
 
   next();
-};
+};*/
 
 
 
-/*module.exports = function (req, res, next) {
+module.exports = function (req, res, next) {
   const userKey = req.headers['x-api-key'];
   const serverKey = process.env.API_KEY;
     
@@ -23,4 +23,4 @@ module.exports = (req, res, next) => {
   }
 
   next();
-};*/
+};

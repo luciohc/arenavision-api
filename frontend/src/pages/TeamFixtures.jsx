@@ -11,7 +11,7 @@ function TeamFixtures() {
   const fetchFixtures = async (teamName) => {
     try {
       const res = await axios.get(`http://localhost:3001/api/fixtures/by-team?team=${teamName}`, {
-
+        
         headers: {
           'x-api-key': process.env.REACT_APP_API_KEY
         }

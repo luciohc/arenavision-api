@@ -80,3 +80,10 @@ x-api-key: hz8gmykar46b1976h9chfvnov2ib1cha
 ### Buscar jogos do time Arsenal
 GET http://localhost:3001/api/fixtures/by-team?team=Barcelona
 x-api-key: hz8gmykar46b1976h9chfvnov2ib1cha
+
+### Buscar jogos do time Arsenal (via Arena Vision API)
+GET https://arena-vision-api.p.rapidapi.com/api/events
+X-RapidAPI-Key: e1826c50f0msh18923ef960a3272p18aaacjsn66a2be4bbd04
+X-RapidAPI-Host: arena-vision-api.p.rapidapi.com
+
+

@@ -6,7 +6,7 @@ function FixtureStats({ fixtureId }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+  /*useEffect(() => {
     const fetchStats = async () => {
       try {
         const response = await axios.get(`http://localhost:3001/api/fixture/${fixtureId}/stats`, {
@@ -26,7 +26,47 @@ function FixtureStats({ fixtureId }) {
     };
 
     fetchStats();
-  }, [fixtureId]);
+  }, [fixtureId]);*/
+
+  useEffect(() => {
+  const fetchStats = async () => {
+    try {
+      // 🔧 Dados mockados (falsos) para exibir na tela
+      const mockData = [
+        {
+          team: { name: 'Manchester City' },
+          statistics: [
+            { type: 'Posse de bola', value: '64%' },
+            { type: 'Chutes ao gol', value: 8 },
+            { type: 'Total de chutes', value: 17 },
+            { type: 'Escanteios', value: 6 },
+            { type: 'Faltas', value: 9 }
+          ]
+        },
+        {
+          team: { name: 'Liverpool' },
+          statistics: [
+            { type: 'Posse de bola', value: '36%' },
+            { type: 'Chutes ao gol', value: 3 },
+            { type: 'Total de chutes', value: 7 },
+            { type: 'Escanteios', value: 4 },
+            { type: 'Faltas', value: 12 }
+          ]
+        }
+      ];
+
+      setStats(mockData);
+    } catch (err) {
+      console.error('Erro ao buscar estatísticas:', err);
+      setError('Erro ao carregar estatísticas');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchStats();
+}, [fixtureId]);
+
 
   if (loading) return <p className="text-gray-300">Carregando estatísticas...</p>;
   if (error) return <p className="text-red-500">{error}</p>;
